@@ -2,7 +2,7 @@
 # NOTE: edu.csu is the file downloaded earlier from the link link https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv
 
 # Since the raw data file has a header, read the csv file with the header record
-EDU_Data <- read.csv("data/edu.csv",header=TRUE, sep="\t")
+EDU_Data <- read.csv("data/edu.csv",header=TRUE)
 
 library(dplyr)
 
