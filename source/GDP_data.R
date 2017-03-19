@@ -1,10 +1,8 @@
 # This R program will read the GDP data from the link https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv
 # and will clean this data so that this data can be used in the analysis.
 
-URL_GDP_Data <- 'https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv'
-
 # Since the raw data file is not having any header record, read the csv file without the header record
-GDP_Data <- read.csv(URL_GDP_Data,header=FALSE)
+GDP_Data <- read.csv('data/gdp.csv',header=FALSE, sep="\t")
 
 
 library(dplyr)
@@ -104,8 +102,10 @@ sapply(GDP_Data,class)
 # GDP.Ranking should be of type Numeric
 # Country should be of type Character
 # GDP.in.Millions.USD should be of type Character
-GDP_Data[,c("GDP.Ranking","GDP.in.Millions.USD")] <- as.numeric(as.character(unlist(GDP_Data[,c("GDP.Ranking","GDP.in.Millions.USD")])))
-GDP_Data[,c("Country.Code","Country")] <- as.character(unlist(GDP_Data[,c("Country.Code","Country")]))
+GDP_Data[,c("GDP.Ranking","GDP.in.Millions.USD")] <- 
+  as.numeric(as.character(unlist(GDP_Data[,c("GDP.Ranking","GDP.in.Millions.USD")])))
+GDP_Data[,c("Country.Code","Country")] <- 
+  as.character(unlist(GDP_Data[,c("Country.Code","Country")]))
 
 # Lets look at the class of all the columns of the file
 sapply(GDP_Data,class)
@@ -113,6 +113,6 @@ sapply(GDP_Data,class)
 # Lets have a look at the top 5 records of this data frame to verify the data
 head(GDP_Data)
 
-# writes the table of word length frequency
-write.table(GDP_Data, "data/cleaned_GDP_Data.txt",
-            sep = "|", row.names = FALSE, quote = FALSE)
+# Write the tidied GDP data file into the data folder with file name as cleaned_GDP_Data.txt
+write.table(GDP_Data, 'data/cleaned_GDP_Data.txt',
+            sep = "\t", row.names = FALSE, quote = FALSE)
