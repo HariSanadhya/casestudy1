@@ -2,7 +2,7 @@
 # and will clean this data so that this data can be used in the analysis.
 
 # Since the raw data file is not having any header record, read the csv file without the header record
-GDP_Data <- read.csv('data/gdp.csv',header=FALSE, sep="\t")
+GDP_Data <- read.csv('data/gdp.csv',header=FALSE)
 
 
 library(dplyr)
