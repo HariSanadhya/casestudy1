@@ -22,14 +22,13 @@
 # Make Target:
 # ------------
 # The Makefile provides the following targets to make:
-#   $ make								compile and link
-#   $ make clean					removes all the files that will be created by this process
-#   $ make download				downloads the raw GDP data and educational statistics data file from the internet
-#   $ make tidy_edu				cleans/tidies the raw educational file and stores the tidy file in the data folder
-#   $ make tidy_gdp				cleans/tidies the raw GDP file and stores the tidy file in the data folder
-#   $ make report.md			using the tidied education and GDP data, perform certain data analytics process to 
-#														analyze relationship between GDP and income group.
-#   $ make all						Perfrom all the above make targets with a single command execution
+#   $ make clean          Removes all the files that will be created by this process
+#   $ make download       Downloads the raw GDP data and educational statistics data file from the internet
+#   $ make tidy_edu       Cleans/tidies the raw educational file and stores the tidy file in the data folder
+#   $ make tidy_gdp       Cleans/tidies the raw GDP file and stores the tidy file in the data folder
+#   $ make report.md      Using the tidied education and GDP data, perform certain data analytics process to 
+#                           analyze relationship between GDP and income group.
+#   $ make all            Perfrom all the above make targets with a single command execution
 
 all: clean download tidy_edu tidy_gdp report.md
 
