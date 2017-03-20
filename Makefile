@@ -37,11 +37,6 @@ all: clean download tidy_edu tidy_gdp report.md
 clean:
 	rm -f data/gdp.csv data/edu.csv report.md data/cleaned_EDU_Data.txt data/cleaned_GDP_Data.txt data/merged_Data.txt graphs/CountryCode_vs_GDP.png graphs/Modified CountryCode_vs_GDP.png
 
-#install:
-#	Rscript -e 'install.packages("RCurl", "packages", repos = "http://cran.us.r-project.org")'
-#	Rscript -e 'install.packages("ggplot2", "packages", repos = "http://cran.us.r-project.org")'
-#	Rscript -e '.libPaths(c(.libPaths(), "packages"))'
-
 # Download the raw GDP and EDU data from internet and save it in data folder by the names gdp.csv and edu.csv
 download:
 	Rscript -e 'download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv", destfile = "data/gdp.csv", method="auto", quiet = TRUE)'
@@ -58,4 +53,5 @@ tidy_gdp: source/GDP_data.r
 # Call the r script that will use the data analytics tools to analyze the GDP and the EDU data to determine
 # the realtionship between GDP and Income group of a country.
 report.md: report.Rmd 
+	Rscript -e 'find.package("rmarkdown")'
 	Rscript -e 'rmarkdown::render("$<")'
