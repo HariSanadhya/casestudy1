@@ -5,7 +5,7 @@
 # License: GPL (General Public License)
 # Authors: Charles McCann
 #          Dominique Edwards
-#          Hari Sanadhya
+#          Hari Narayan Sanadhya
 #          Huynh vu
 # Date:    2017/03/19
 # 
@@ -28,7 +28,7 @@
 #   $ make tidy_gdp       Cleans/tidies the raw GDP file and stores the tidy file in the data folder
 #   $ make report.md      Using the tidied education and GDP data, perform certain data analytics process to 
 #                           analyze relationship between GDP and income group.
-#   $ make all            Perfrom all the above make targets with a single command execution
+#   $ make all            Perform all the above make targets with a single command execution
 
 all: clean download tidy_edu tidy_gdp report.md
 
@@ -50,7 +50,6 @@ tidy_gdp: source/GDP_data.r
 	Rscript $<
 
 # Call the r script that will use the data analytics tools to analyze the GDP and the EDU data to determine
-# the realtionship between GDP and Income group of a country.
+# the relationship between GDP and Income group of a country.
 report.md: report.Rmd 
-	Rscript -e 'find.package("rmarkdown")'
 	Rscript -e 'rmarkdown::render("$<")'

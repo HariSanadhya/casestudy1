@@ -1,6 +1,6 @@
 <b>Introduction</b> <br>
 <p>
-Gross domestic product (GDP) is the monetary value of all the finished goods and services produced within a country's borders in a specific time period. GDP is a broad measurement of a nation’s overall economic activity. GDP data when combined with the other comparable indicators of the countries like education access, progression, completion, literacy, teachers, population, and expenditures could help in understanding how GDP is related these other factors of the various economies in the world. This kind of analysis could lead to study of GDP in a very broader aspect like how the GDP of economies very for countries with high population then countries with low population. In this study, we will view and analyze GDP with respect to the income groups of the various ecomonies.
+Gross domestic product (GDP) is the monetary value of all the finished goods and services produced within a country's borders in a specific period. GDP is a broad measurement of a nation's overall economic activity. GDP data when combined with the other comparable indicators of the countries like education access, progression, completion, literacy, teachers, population, and expenditures could help in understanding how GDP is related these other factors of the various economies in the world. This kind of analysis could lead to study of GDP in a very broader aspect like how the GDP of economies very for countries with high population then countries with low population. In this study, we will view and analyze GDP with respect to the income groups of the various economies.
 </p>
 <br> <br>
 
@@ -14,17 +14,6 @@ cleaned_EDU_Data <- read.csv("data/cleaned_EDU_Data.txt",header=T, sep="\t")
 # Load dplyr package
 library(dplyr)
 ```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
 
 <b>Question 1: 1 Merge the data based on the country shortcode. How many IDs matched?</b>
 
@@ -101,7 +90,7 @@ sort_by_GDP[13,c("Country.Code","Country","GDP.in.Millions.USD","GDP.Ranking", "
 <b>Question 3: What are the average GDP rankings for the "High income: OECD" and "High income: nonOECD" groups</b>
 
 ``` r
-# The following R code calculates the the average GDP rankings for the "High income: OECD" 
+# The following R code calculates the average GDP rankings for the "High income: OECD" 
 #  and "High income: nonOECD" groups
 merged_Data %>% 
   # filter records to have rows with "High income: OECD" and "High income: nonOECD" income group
@@ -110,7 +99,7 @@ merged_Data %>%
   group_by(Income.Group) %>% 
   # Compute the mean of GDP Ranking
   summarize(mean(GDP.Ranking)) %>%
-  # Convert the result into a Data Frame so as to make it more readable
+  # Convert the result into a Data Frame to make it more readable
   as.data.frame %>%
   # Assign proper column headings
   setNames(c("Income.Group", "Mean.GDP.Ranking"))
@@ -143,10 +132,10 @@ ggsave(filename = "graphs/CountryCode_vs_GDP.png", device="png", plot=plot1)
 
 ``` r
 # Since most of the GDP values are very small (almost 0) compared to GDP of USA, it is difficult 
-# to draw any meaningful inferences from the graph. So based on the income group, split the graph 
-# so as to make it readable and draw some inferences out from it.
+# to draw any meaningful inferences from the graph. So, based on the income group, split the graph 
+# to make it readable and draw some inferences out from it.
 # The below code plots the GDP of the countries splitting the graph vertically such that data
-# corresponding to countires in different income group appear in different splitted section.
+# corresponding to countries in different income group appear in different splitted section.
 plot2 <- ggplot(merged_Data, aes(x=Country.Code,y=GDP.in.Millions.USD, colour=Income.Group,
     group=Income.Group )) + geom_point() + geom_line() + theme(strip.background = element_blank(),
     strip.text.x = element_blank(), legend.position="top", axis.text.x = element_text(angle = 90,
@@ -202,13 +191,13 @@ Income_vs_GDP_rank_quantiles["Lower middle income","1-38"]
 
     ## [1] 5
 
-There are 5 countries that belong to the Lower middle income group but are amongst the top 38 countires with high GDP values. <br>
+There are 5 countries that belong to the Lower middle income group but are amongst the top 38 countries with high GDP values. <br>
 
 <b>Conclusion</b> <br>
 <p>
 In this study, we have tried to examine the relationship between the income group of a country on its GDP value. The study incorporates visual tools to examine this relationship.
 
-The conclusion drawn from the visual inspection of the data is as below:- For countries with low income, the GDP is very low and is almost the same for all those countries. Countries in lower middle income group follow the same trend as countries in low income group i.e. they have low GDP and GDP is almost the same for all these countries. There are a few exceptions here where the countries though in the lower middle income group have high GDP. For countries in High Income: nonOECD group, the GDP amount variation is very less and the GDP amount is low as well. For countries in upper middle income group, there is visible variation in GDP. Overall it appears that average GDP for countries in upper middle income group is higher then countries in Low income, High Income: nonOECD and Lower middle income (after removing the outlier China from lower middle income group). In the High income: OCED grouped countries, the variation in GDP is high. But still there are countries in this group which are having low GDP values. In light of the above mentioned points, it can be said that there is no cause effect relationship between the Income Group of the country and its GDP. There might be association between the two but the statical analysis of the data does not evidence in favour of the association.
+The conclusion drawn from the visual inspection of the data is as below: - For countries with low income, the GDP is very low and is almost the same for all those countries. Countries in lower middle income group follow the same trend as countries in low income group i.e. they have low GDP and GDP is almost the same for all these countries. There are a few exceptions here where the countries though in the lower middle income group have high GDP. For countries in High Income: nonOECD group, the GDP amount variation is very less and the GDP amount is low as well. For countries in upper middle income group, there is visible variation in GDP. Overall it appears that average GDP for countries in upper middle income group is higher then countries in Low income, High Income: nonOECD and Lower middle income (after removing the outlier China from lower middle income group). In the High income: OCED grouped countries, the variation in GDP is high. But still there are countries in this group which are having low GDP values. Considering the above-mentioned points, it can be said that there is no cause effect relationship between the Income Group of the country and its GDP. There might be association between the two but statically, analysis of the data does not evidence in favour of the association.
 
-The presence of 5 countries of the lower middle income group in top 38 nations with respect to GDP and country "St. Kitts and Nevis" belonging to Upper middle income as the 13th nation when countries are arranged in assending order of GDP supports the above conclusions drawn regarding the relationship between Income Group of the country and its GDP.
+The presence of 5 countries of the lower middle income group in top 38 nations with respect to GDP and country "St. Kitts and Nevis" belonging to Upper middle income as the 13th nation when countries are arranged in ascending order of GDP supports the above conclusions drawn regarding the relationship between Income Group of the country and its GDP.
 </p>
