@@ -101,9 +101,10 @@ ggsave(filename = "graphs/CountryCode_vs_GDP.png", device="png", plot=plot1)
 # corresponding to countries in different income group appear in different splitted section.
 plot2 <- ggplot(merged_Data, aes(x=Country.Code,y=GDP.in.Millions.USD, colour=Income.Group,
     group=Income.Group )) + geom_point() + geom_line() + theme(strip.background = element_blank(),
-    strip.text.x = element_blank(), legend.position="top", axis.text.x = element_text(angle = 90,
-    hjust = 0, size=4, vjust=0)) + facet_grid(. ~ Income.Group,drop = F,  scales = "free", space 
-    ="free") + xlab("Country Code") + ylab("GDP (Millions USD)") + ggtitle("Country Code by GDP")
+    strip.text.x = element_blank(), legend.position="top", legend.text=element_text(size=6), 
+    axis.text.x = element_text(angle = 90, hjust = 0, size=4, vjust=0)) + facet_grid(. ~ Income.Group, 
+    drop = F,  scales = "free", space ="free") + xlab("Country Code") + ylab("GDP (Millions USD)") +
+    ggtitle("Country Code by GDP")
 # Save the plot
 ggsave(filename = "graphs/Modified CountryCode_vs_GDP.png", device="png", plot=plot2)
 # Display the plot in the markdown file
